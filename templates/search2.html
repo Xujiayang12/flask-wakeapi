@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.css"/>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css"/>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <title>课程搜索</title>
+</head>
+<body>
+<script>
+    $(function () {
+        var avg="";
+        var main="";
+        var com="";
+        var star="";
+        var type="";
+        $("#main").change(
+            function () {
+                main=$('#main').val();
+            }
+        );
+        $("#com").change(
+            function () {
+                com=$('#com').val();
+            }
+        );
+        $("#type").change(
+            function () {
+                type=$('#type').find("option:selected").text();
+            }
+        );
+        $("#avg").change(
+            function () {
+                var $seltxt=$('#avg').find("option:selected").val();
+                if($seltxt==1)
+                {
+                    avg=90;
+                }
+                if($seltxt==0)
+                {
+                    avg="";
+                }
+                if($seltxt==2)
+                {
+                    avg=80;
+                }
+                if($seltxt==3)
+                {
+                    avg=70;
+                }
+                if($seltxt==4)
+                {
+                    avg=60;
+                }
+            }
+        );
+        $("#star").change(
+            function () {
+                var $seltxt=$('#star').find("option:selected").val();
+                if($seltxt==1)
+                {
+                    star="★★★★★";
+                }
+                if($seltxt==0)
+                {
+                    star="";
+                }
+                if($seltxt==2)
+                {
+                    star="★★★★";
+                }
+                if($seltxt==3)
+                {
+                    star="★★★";
+                }
+                if($seltxt==4)
+                {
+                    star="★★";
+                }
+                if($seltxt==5)
+                {
+                    star="★";
+                }
+            }
+        );
+        $("#btn").click(
+            function () {
+                var url="/m/list/"+main+"&"+type+"&"+avg+"&"+star+"&"+com;
+                console.log(url);
+                if(url=="/m/list/&&&&")
+                {
+                    alert("请刷新页面重新搜索,搜索条件不得为空");
+                }
+                else
+                {
+                    window.location.href=url;
+                }
+            }
+        );
+
+    })
+</script>
+<div class="page">
+    <div class="page__bd">
+        <div class="weui-cells__title">请输入关键词</div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" placeholder="课程名称 或 老师名字" id="main"/>
+                </div>
+            </div>
+        </div>
+        <div class="weui-cells__title" style='padding-top: 30px'>其他选项</div>
+        <div class="weui-cells">
+            <div class="weui-cell weui-cell_select weui-cell_select-after">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label">课程归属</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select" name="types" id="type">
+                        <option value="1"></option>
+                        <option value="2">自然科学类</option>
+                        <option value="3">人文社会科学类</option>
+                        <option value="4">A系列</option>
+                    </select>
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_select weui-cell_select-after">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label">平均分</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select" name="avg" id="avg">
+                        <option value="0"></option>
+                        <option value="1">90分以上</option>
+                        <option value="2">80-90</option>
+                        <option value="3">70-80</option>
+                        <option value="4">60-70</option>
+                    </select>
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_select weui-cell_select-after">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label">评价</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select" name="star" id="star">
+                        <option value="0"></option>
+                        <option value="1">5星</option>
+                        <option value="2">4星</option>
+                        <option value="3">3星</option>
+                        <option value="4">2星</option>
+                        <option value="5">1星</option>
+                    </select>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" placeholder="评论关键词，如（论文，不点名等）" id="com"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="weui-btn-area">
+            <a class="weui-btn weui-btn_primary" id="btn">确定</a>
+            <a href="/m/type/" class="weui-btn weui-btn_plain-primary">选修排行</a>
+        </div>
+
+    </div>
+</div>
+<footer class="weui-footer" style="padding-top: 300px;padding-bottom: 50px;">
+    <p class="weui-footer__links">
+        <a href="" class="weui-footer__link">SCAU17级信科1班</a>
+        <a href="https://github.com/Xujiayang12/SCAU-Chake-Web" class="weui-footer__link">GitHub</a>
+    </p>
+    <p class="weui-footer__text">Copyright © 2018 SCAU</p>
+</footer>
+</body>
+</html>
